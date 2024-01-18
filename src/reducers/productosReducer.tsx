@@ -1,5 +1,5 @@
 import {
-    AGREGAR_PRODUCTO, AGREGAR_PRODUCTO_EXITO,
+    AGREGAR_PRODUCTO, AGREGAR_PRODUCTO_ERROR, AGREGAR_PRODUCTO_EXITO,
     // AGREGAR_PRODUCTO_EXITO, 
     // AGREGAR_PRODUCTO_ERROR
 } from '../types'
@@ -42,6 +42,13 @@ export default function productosReducer(state : AppState = initialProductoState
             ...state,
             loading: false,
             productos : [...state.productos, action.payload]
+        }
+
+        case AGREGAR_PRODUCTO_ERROR: 
+        return {
+            ...state,
+            loading: false,
+            error: action.payload
         }
 
         default:

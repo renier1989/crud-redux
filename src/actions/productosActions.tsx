@@ -1,3 +1,4 @@
+import { clienteAxios } from "../axios";
 import { TProductos } from "../reducers/productosReducer";
 import {
   AGREGAR_PRODUCTO,
@@ -9,10 +10,13 @@ import {
 // esta es la funcion que es llamada en el componente
 export const creatNuevoProductoAction = (producto: TProductos) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (dispatch: any) => {
+  return async (dispatch: any) => {
     dispatch(agregarProducto());
 
     try {
+        // agregamo a la API
+        await clienteAxios.post('productos', producto);
+        // esto agrega el producto al state
       dispatch(agregarProductoExito(producto));
     } catch (error) {
       dispatch(agregarProductoError(true));
