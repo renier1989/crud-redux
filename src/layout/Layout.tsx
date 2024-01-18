@@ -6,7 +6,7 @@ export const Layout = () => {
     <div>
         <div>
             <Header/>
-            <main className=" md:w-4/5 px-4 flex mx-auto md:mt-10 mt-4">
+            <main className=" md:w-1/2 px-4 mx-auto md:mt-10 mt-4">
                 <Outlet/>
             </main>
         </div>
