@@ -4,18 +4,24 @@ import { Layout } from "./layout/Layout"
 import { NuevoProducto } from './components/NuevoProducto'
 import { EditarProducto } from './components/EditarProducto'
 
+// Redux
+import { Provider } from 'react-redux'
+import { store } from './store';
+
 function App() {
 
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Layout />} >
-          <Route index element={<Productos />} />
-          <Route path="productos/nuevo" element={<NuevoProducto />} />
-          <Route path="productos/editar/:id" element={<EditarProducto />} />
-        </Route>
-      </Routes>
+      <Provider store={store}>
+        <Routes>
+          <Route path="/" element={<Layout />} >
+            <Route index element={<Productos />} />
+            <Route path="productos/nuevo" element={<NuevoProducto />} />
+            <Route path="productos/editar/:id" element={<EditarProducto />} />
+          </Route>
+        </Routes>
+      </Provider>
     </Router>
   )
 }
