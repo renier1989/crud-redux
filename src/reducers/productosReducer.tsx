@@ -1,5 +1,11 @@
+import {
+    AGREGAR_PRODUCTO, AGREGAR_PRODUCTO_EXITO,
+    // AGREGAR_PRODUCTO_EXITO, 
+    // AGREGAR_PRODUCTO_ERROR
+} from '../types'
+
 export type TProductos = {
-    id: number;
+    id?: number;
     nombre: string;
     precio: number;
 }
@@ -12,7 +18,8 @@ type AppState = {
 
 type AppAction = {
     type: string;
-    payload? : null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    payload? : any;
 }
 
 
@@ -24,6 +31,19 @@ export const initialProductoState: AppState = {
 
 export default function productosReducer(state : AppState = initialProductoState, action:AppAction): AppState{
     switch (action.type) {
+        case AGREGAR_PRODUCTO:
+        return {
+            ...state,
+            loading:action.payload
+        }
+
+        case AGREGAR_PRODUCTO_EXITO: 
+        return {
+            ...state,
+            loading: false,
+            productos : [...state.productos, action.payload]
+        }
+
         default:
             return state;
     }
