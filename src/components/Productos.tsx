@@ -16,6 +16,8 @@ export const Productos = () => {
   }, []);
 
   const productos = useSelector(state => state.productos.productos);
+  const error = useSelector(state => state.productos.error);
+  const cargando = useSelector(state => state.productos.loading);
 
   return (
     <>
@@ -31,6 +33,11 @@ export const Productos = () => {
         >
           Nuevo Producto ➕
         </Link>
+      </div>
+      <div>
+        {error ? <p className="bg-red-600 rounded-md text-white text-center p-2 my-2 mx-10">Hubo un error.</p> : null}
+        {cargando ? <p className="bg-green-700 rounded-md text-white text-center p-2 my-2 mx-10">Cargando....</p> : null}
+
       </div>
       <div className="w-full justify-center rounded-md border-2 shadow-md">
         <table className="table-auto w-[80%] mx-auto text-center  my-4">
