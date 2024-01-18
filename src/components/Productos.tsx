@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { obtenetProductosAction } from "../actions/productosActions";
 import { useEffect } from "react";
+import { Producto } from "./Producto";
 
 export const Productos = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,10 @@ export const Productos = () => {
     // CONSULTAMOS LA API
     const cargarProductos = () => dispatch(obtenetProductosAction());
     cargarProductos();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const productos = useSelector(state => state.productos.productos);
 
   return (
     <>
@@ -25,8 +29,7 @@ export const Productos = () => {
           className="p-3 rounded-md bg-sky-900 text-white font-semibold"
           to="/productos/nuevo"
         >
-          {" "}
-          Nuevo Producto ➕{" "}
+          Nuevo Producto ➕
         </Link>
       </div>
       <div className="w-full justify-center rounded-md border-2 shadow-md">
@@ -39,16 +42,15 @@ export const Productos = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b  text-gray-700 font-semibold">
-              <td>pan de la bodega</td>
-              <td>1000</td>
-              <td>
-                <div className="flex gap-5 items-center justify-center text-xl">
-                  <button>🔄</button>
-                  <button>❌</button>
-                </div>
-              </td>
-            </tr>
+          {productos.length === 0 ? <tr><td colSpan={3}>No se han registrado productos</td></tr>: (
+            productos.map(producto =>(
+              <Producto
+              key={producto.id}
+              producto={producto}
+              />
+            ) )
+
+          ) }
           </tbody>
         </table>
       </div>

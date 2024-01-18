@@ -9,7 +9,7 @@ import {
   OBTENER_PRODUCTOS_ERROR,
   OBTENER_PRODUCTOS_EXITO,
 } from "../types";
-import { Productos } from "../components/Productos";
+
 
 // crear nuevos productos
 // esta es la funcion que es llamada en el componente
