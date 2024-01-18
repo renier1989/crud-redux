@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { clienteAxios } from "../axios";
 import { TProductos } from "../reducers/productosReducer";
 import {
@@ -14,12 +15,24 @@ export const creatNuevoProductoAction = (producto: TProductos) => {
     dispatch(agregarProducto());
 
     try {
-        // agregamo a la API
-        await clienteAxios.post('productos', producto);
-        // esto agrega el producto al state
+      // agregamo a la API
+      await clienteAxios.post("productos", producto);
+      // esto agrega el producto al state
       dispatch(agregarProductoExito(producto));
+        // muestro una alerta
+        Swal.fire(
+            'Exito',
+            'Producto agregado con Exito',
+            'success'
+        )
+    
     } catch (error) {
       dispatch(agregarProductoError(true));
+      Swal.fire({
+        icon: 'error',
+        title: 'Hubo un Error',
+        text: 'Lo sentimos, hubo un error'
+      })
     }
   };
 };
