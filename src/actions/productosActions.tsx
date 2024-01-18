@@ -1,11 +1,15 @@
 import Swal from "sweetalert2";
 import { clienteAxios } from "../axios";
-import { TProductos } from "../reducers/productosReducer";
+import { TProductos } from '../reducers/productosReducer';
 import {
   AGREGAR_PRODUCTO,
   AGREGAR_PRODUCTO_ERROR,
   AGREGAR_PRODUCTO_EXITO,
+  OBTENER_PRODUCTOS_CARGANDO,
+  OBTENER_PRODUCTOS_ERROR,
+  OBTENER_PRODUCTOS_EXITO,
 } from "../types";
+import { Productos } from "../components/Productos";
 
 // crear nuevos productos
 // esta es la funcion que es llamada en el componente
@@ -53,3 +57,35 @@ const agregarProductoError = (error: boolean) => ({
   type: AGREGAR_PRODUCTO_ERROR,
   payload: error,
 });
+
+
+export const obtenetProductosAction = () =>{
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return async(dispatch:any)=>{
+        dispatch(obtenerProductos())
+
+        try {
+          const respuesta = await clienteAxios.get('productos');
+          dispatch(listadoProductos(respuesta.data))
+          
+        } catch (error) {
+         dispatch(listadoProductosError(true));
+          
+        }
+    }
+}
+
+const obtenerProductos = ()=>({
+    type : OBTENER_PRODUCTOS_CARGANDO,
+    payload: true,
+})
+
+const listadoProductos = (productos:TProductos[]) =>({
+    type : OBTENER_PRODUCTOS_EXITO,
+    payload: productos,
+})
+const listadoProductosError = (error:boolean) =>({
+    type : OBTENER_PRODUCTOS_ERROR,
+    payload: error,
+})
+
