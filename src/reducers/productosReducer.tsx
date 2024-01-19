@@ -5,6 +5,7 @@ import {
   OBTENER_PRODUCTOS_CARGANDO,
   OBTENER_PRODUCTOS_ERROR,
   OBTENER_PRODUCTOS_EXITO,
+  OBTENER_PRODUCTO_ELIMINAR,
 } from "../types";
 
 export type TProductos = {
@@ -17,6 +18,7 @@ type AppState = {
   productos: TProductos[];
   error: string | null | boolean;
   loading: boolean;
+  productoEliminar?: string | null ;
 };
 
 type AppAction = {
@@ -29,6 +31,7 @@ export const initialProductoState: AppState = {
   productos: [],
   error: null,
   loading: false,
+  productoEliminar:null
 };
 
 export default function productosReducer(
@@ -65,6 +68,12 @@ export default function productosReducer(
         error: null,
         productos: action.payload,
       };
+
+      case OBTENER_PRODUCTO_ELIMINAR: 
+      return{
+        ...state,
+        productoEliminar: action.payload,
+      }
 
     default:
       return state;

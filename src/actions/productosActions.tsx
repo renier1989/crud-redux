@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import { clienteAxios } from "../axios";
-import { TProductos } from '../reducers/productosReducer';
+import { TProductos } from "../reducers/productosReducer";
 import {
   AGREGAR_PRODUCTO,
   AGREGAR_PRODUCTO_ERROR,
@@ -8,8 +8,8 @@ import {
   OBTENER_PRODUCTOS_CARGANDO,
   OBTENER_PRODUCTOS_ERROR,
   OBTENER_PRODUCTOS_EXITO,
+  OBTENER_PRODUCTO_ELIMINAR,
 } from "../types";
-
 
 // crear nuevos productos
 // esta es la funcion que es llamada en el componente
@@ -23,20 +23,15 @@ export const creatNuevoProductoAction = (producto: TProductos) => {
       await clienteAxios.post("productos", producto);
       // esto agrega el producto al state
       dispatch(agregarProductoExito(producto));
-        // muestro una alerta
-        Swal.fire(
-            'Exito',
-            'Producto agregado con Exito',
-            'success'
-        )
-    
+      // muestro una alerta
+      Swal.fire("Exito", "Producto agregado con Exito", "success");
     } catch (error) {
       dispatch(agregarProductoError(true));
       Swal.fire({
-        icon: 'error',
-        title: 'Hubo un Error',
-        text: 'Lo sentimos, hubo un error'
-      })
+        icon: "error",
+        title: "Hubo un Error",
+        text: "Lo sentimos, hubo un error",
+      });
     }
   };
 };
@@ -58,34 +53,44 @@ const agregarProductoError = (error: boolean) => ({
   payload: error,
 });
 
+export const obtenetProductosAction = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return async (dispatch: any) => {
+    dispatch(obtenerProductos());
 
-export const obtenetProductosAction = () =>{
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return async(dispatch:any)=>{
-        dispatch(obtenerProductos())
-
-        try {
-          const respuesta = await clienteAxios.get('productos');
-          dispatch(listadoProductos(respuesta.data))
-          
-        } catch (error) {
-         dispatch(listadoProductosError(true));
-          
-        }
+    try {
+      const respuesta = await clienteAxios.get("productos");
+      dispatch(listadoProductos(respuesta.data));
+    } catch (error) {
+      dispatch(listadoProductosError(true));
     }
-}
+  };
+};
 
-const obtenerProductos = ()=>({
-    type : OBTENER_PRODUCTOS_CARGANDO,
-    payload: true,
-})
+const obtenerProductos = () => ({
+  type: OBTENER_PRODUCTOS_CARGANDO,
+  payload: true,
+});
 
-const listadoProductos = (productos:TProductos[]) =>({
-    type : OBTENER_PRODUCTOS_EXITO,
-    payload: productos,
-})
-const listadoProductosError = (error:boolean) =>({
-    type : OBTENER_PRODUCTOS_ERROR,
-    payload: error,
-})
+const listadoProductos = (productos: TProductos[]) => ({
+  type: OBTENER_PRODUCTOS_EXITO,
+  payload: productos,
+});
+const listadoProductosError = (error: boolean) => ({
+  type: OBTENER_PRODUCTOS_ERROR,
+  payload: error,
+});
 
+export const productoEliminarAction = (id: string) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return async (dispatch: any) => {
+    dispatch(productoEliminar(id));
+    console.log(id);
+    
+  };
+};
+
+const productoEliminar = (id: string) => ({
+  type: OBTENER_PRODUCTO_ELIMINAR,
+  payload: id,
+});
