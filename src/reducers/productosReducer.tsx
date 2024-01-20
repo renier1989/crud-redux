@@ -5,7 +5,10 @@ import {
   OBTENER_PRODUCTOS_CARGANDO,
   OBTENER_PRODUCTOS_ERROR,
   OBTENER_PRODUCTOS_EXITO,
+  OBTENER_PRODUCTO_EDITAR,
   OBTENER_PRODUCTO_ELIMINAR,
+  PRODUCTO_EDITADO_ERROR,
+  PRODUCTO_EDITADO_EXITO,
   PRODUCTO_ELIMINADO_ERROR,
   PRODUCTO_ELIMINADO_EXITO,
 } from "../types";
@@ -21,6 +24,7 @@ type AppState = {
   error: string | null | boolean;
   loading: boolean;
   productoEliminar?: string | null;
+  productoEditar?: TProductos | null;
 };
 
 type AppAction = {
@@ -33,7 +37,8 @@ export const initialProductoState: AppState = {
   productos: [],
   error: null,
   loading: false,
-  productoEliminar: null
+  productoEliminar: null,
+  productoEditar: null,
 };
 
 export default function productosReducer(
@@ -58,6 +63,7 @@ export default function productosReducer(
     case AGREGAR_PRODUCTO_ERROR:
     case OBTENER_PRODUCTOS_ERROR:
     case PRODUCTO_ELIMINADO_ERROR:
+    case PRODUCTO_EDITADO_ERROR:
       return {
         ...state,
         loading: false,
@@ -84,6 +90,19 @@ export default function productosReducer(
         productos: state.productos.filter(producto => producto.id !== state.productoEliminar),
         productoEliminar: null
       }
+
+    case OBTENER_PRODUCTO_EDITAR:
+      return {
+        ...state,
+        productoEditar: action.payload,
+      }
+
+    case PRODUCTO_EDITADO_EXITO: 
+    return{
+      ...state,
+      productos: state.productos.map(productoEditar => productoEditar.id === action.payload.id ? productoEditar=action.payload : productoEditar),
+      productoEditar: null
+    }
 
     default:
       return state;

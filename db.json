@@ -3,7 +3,7 @@
     {
       "id": "1",
       "nombre": "Jugo de Zanahoria",
-      "precio": "31111"
+      "precio": "1"
     },
     {
       "nombre": "Jugo de Naranja",
@@ -22,8 +22,8 @@
     },
     {
       "id": "1a77",
-      "nombre": "pan",
-      "precio": 123
+      "nombre": "pan updated",
+      "precio": "f"
     }
   ]
 }

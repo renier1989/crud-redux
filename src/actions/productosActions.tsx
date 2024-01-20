@@ -1,13 +1,16 @@
 import Swal from "sweetalert2";
 import { clienteAxios } from "../axios";
 import { TProductos } from "../reducers/productosReducer";
+import { PRODUCTO_EDITADO_ERROR, PRODUCTO_EDITADO_EXITO } from '../types/index';
 import {
   AGREGAR_PRODUCTO,
   AGREGAR_PRODUCTO_ERROR,
   AGREGAR_PRODUCTO_EXITO,
+  COMENZAR_PRODUCTO_EDICION,
   OBTENER_PRODUCTOS_CARGANDO,
   OBTENER_PRODUCTOS_ERROR,
   OBTENER_PRODUCTOS_EXITO,
+  OBTENER_PRODUCTO_EDITAR,
   OBTENER_PRODUCTO_ELIMINAR,
   PRODUCTO_ELIMINADO_ERROR,
   PRODUCTO_ELIMINADO_EXITO,
@@ -87,7 +90,7 @@ export const productoEliminarAction = (id: string) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return async (dispatch: any) => {
     dispatch(productoEliminar(id));
-    
+
     try {
       await clienteAxios.delete(`productos/${id}`);
       dispatch(eliminarProductoExito());
@@ -96,7 +99,7 @@ export const productoEliminarAction = (id: string) => {
         text: "El producto fue eliminado.",
         icon: "success"
       });
-      
+
     } catch (error) {
       dispatch(eliminarProductoError());
     }
@@ -113,3 +116,50 @@ const eliminarProductoExito = () => ({
 const eliminarProductoError = () => ({
   type: PRODUCTO_ELIMINADO_ERROR,
 });
+
+export const obtenerProductoEditarAction = (producto: TProductos) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (dispatch: any) => {
+    dispatch(obtenerProductoEditar(producto));
+  }
+}
+
+const obtenerProductoEditar = (producto: TProductos) => ({
+  type: OBTENER_PRODUCTO_EDITAR,
+  payload: producto
+})
+
+export function editarProductoAction(producto:TProductos){
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return async(dispatch:any)=>{
+    dispatch(editarProducto());
+
+    try {
+      await clienteAxios.put(`productos/${producto.id}`,producto);
+      dispatch(editarProductoExito(producto))
+      Swal.fire("Exito", "Producto editado con Exito", "success");
+    } catch (error) {
+      
+      console.log(error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Hubo un Error",
+        text: "Lo sentimos, hubo un error",
+      });
+      dispatch(editarProductoError());
+    }
+  }
+}
+
+const editarProducto = () =>({
+  type: COMENZAR_PRODUCTO_EDICION
+})
+const editarProductoExito = (producto:TProductos) =>({
+  type: PRODUCTO_EDITADO_EXITO,
+  payload: producto
+})
+const editarProductoError = () =>({
+  type: PRODUCTO_EDITADO_ERROR,
+  payload: true
+})
