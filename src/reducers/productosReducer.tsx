@@ -6,6 +6,8 @@ import {
   OBTENER_PRODUCTOS_ERROR,
   OBTENER_PRODUCTOS_EXITO,
   OBTENER_PRODUCTO_ELIMINAR,
+  PRODUCTO_ELIMINADO_ERROR,
+  PRODUCTO_ELIMINADO_EXITO,
 } from "../types";
 
 export type TProductos = {
@@ -18,7 +20,7 @@ type AppState = {
   productos: TProductos[];
   error: string | null | boolean;
   loading: boolean;
-  productoEliminar?: string | null ;
+  productoEliminar?: string | null;
 };
 
 type AppAction = {
@@ -31,7 +33,7 @@ export const initialProductoState: AppState = {
   productos: [],
   error: null,
   loading: false,
-  productoEliminar:null
+  productoEliminar: null
 };
 
 export default function productosReducer(
@@ -55,6 +57,7 @@ export default function productosReducer(
 
     case AGREGAR_PRODUCTO_ERROR:
     case OBTENER_PRODUCTOS_ERROR:
+    case PRODUCTO_ELIMINADO_ERROR:
       return {
         ...state,
         loading: false,
@@ -69,10 +72,17 @@ export default function productosReducer(
         productos: action.payload,
       };
 
-      case OBTENER_PRODUCTO_ELIMINAR: 
-      return{
+    case OBTENER_PRODUCTO_ELIMINAR:
+      return {
         ...state,
         productoEliminar: action.payload,
+      }
+
+    case PRODUCTO_ELIMINADO_EXITO:
+      return {
+        ...state,
+        productos: state.productos.filter(producto => producto.id !== state.productoEliminar),
+        productoEliminar: null
       }
 
     default:

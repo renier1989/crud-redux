@@ -6,11 +6,6 @@
       "precio": "31111"
     },
     {
-      "id": "2",
-      "nombre": "Jugo de Naranja",
-      "precio": "1"
-    },
-    {
       "nombre": "Jugo de Naranja",
       "precio": "300",
       "id": "3"
@@ -26,49 +21,9 @@
       "id": "5"
     },
     {
-      "id": "0b2b",
-      "nombre": "pezcado",
-      "precio": 300
-    },
-    {
-      "id": "8bda",
-      "nombre": "fffff",
-      "precio": 3
-    },
-    {
-      "id": "4c66",
-      "nombre": "asdfa",
-      "precio": 4
-    },
-    {
-      "id": "9a54",
-      "nombre": "ffffff",
-      "precio": 3
-    },
-    {
-      "id": "731d",
-      "nombre": "ffffff",
-      "precio": 3
-    },
-    {
-      "id": "407a",
-      "nombre": "fadfasdf",
-      "precio": 3333
-    },
-    {
-      "id": "34f3",
-      "nombre": "faaaaaaa",
-      "precio": 32323
-    },
-    {
       "id": "1a77",
       "nombre": "pan",
       "precio": 123
-    },
-    {
-      "id": "ff70",
-      "nombre": "azucar",
-      "precio": 12312123123
     }
   ]
 }

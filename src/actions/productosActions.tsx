@@ -9,6 +9,8 @@ import {
   OBTENER_PRODUCTOS_ERROR,
   OBTENER_PRODUCTOS_EXITO,
   OBTENER_PRODUCTO_ELIMINAR,
+  PRODUCTO_ELIMINADO_ERROR,
+  PRODUCTO_ELIMINADO_EXITO,
 } from "../types";
 
 // crear nuevos productos
@@ -85,12 +87,29 @@ export const productoEliminarAction = (id: string) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return async (dispatch: any) => {
     dispatch(productoEliminar(id));
-    console.log(id);
     
+    try {
+      await clienteAxios.delete(`productos/${id}`);
+      dispatch(eliminarProductoExito());
+      Swal.fire({
+        title: "Eliminado!",
+        text: "El producto fue eliminado.",
+        icon: "success"
+      });
+      
+    } catch (error) {
+      dispatch(eliminarProductoError());
+    }
   };
 };
 
 const productoEliminar = (id: string) => ({
   type: OBTENER_PRODUCTO_ELIMINAR,
   payload: id,
+});
+const eliminarProductoExito = () => ({
+  type: PRODUCTO_ELIMINADO_EXITO,
+});
+const eliminarProductoError = () => ({
+  type: PRODUCTO_ELIMINADO_ERROR,
 });

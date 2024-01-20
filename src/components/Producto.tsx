@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { TProductos } from "../reducers/productosReducer";
 import { useDispatch } from "react-redux";
 import { productoEliminarAction } from "../actions/productosActions";
+import Swal from "sweetalert2";
 
 type ProductoProp = {
   producto: TProductos;
@@ -11,7 +12,31 @@ export const Producto = ({ producto }: ProductoProp) => {
     const dispatch = useDispatch();
 
     const handleEliminarProducto = (id:string) =>{
-        dispatch(productoEliminarAction(id));
+
+
+      Swal.fire({
+        title: "Segur@ que desea eliminar?",
+        text: "No será posible revertir esta accion!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si , Eliminar!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+
+          dispatch(productoEliminarAction(id));
+
+          
+
+
+        }
+      });
+
+
+
+        
     }
 
   return (
