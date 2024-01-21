@@ -3,27 +3,37 @@
     {
       "id": "1",
       "nombre": "Jugo de Zanahoria",
-      "precio": "1"
+      "precio": "1000"
     },
     {
-      "nombre": "Jugo de Naranja",
-      "precio": "300",
-      "id": "3"
+      "id": "bbf3",
+      "nombre": "a",
+      "precio": 3
     },
     {
-      "nombre": "Rib Eye 800g",
-      "precio": "200",
-      "id": "4"
+      "id": "10ac",
+      "nombre": "afd",
+      "precio": 3
     },
     {
-      "nombre": "Jugo de Fresa",
-      "precio": "200",
-      "id": "5"
+      "id": "07b1",
+      "nombre": "3333",
+      "precio": 44444
     },
     {
-      "id": "1a77",
-      "nombre": "pan updated",
-      "precio": "f"
+      "id": "9680",
+      "nombre": "gfdadfsasdfa",
+      "precio": 3232323
+    },
+    {
+      "id": "ee80",
+      "nombre": "otra prueba mas",
+      "precio": 333
+    },
+    {
+      "id": "a0a0",
+      "nombre": "xxxxxxxxx",
+      "precio": 31111
     }
   ]
 }

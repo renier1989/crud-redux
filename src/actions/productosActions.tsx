@@ -15,12 +15,13 @@ import {
   PRODUCTO_ELIMINADO_ERROR,
   PRODUCTO_ELIMINADO_EXITO,
 } from "../types";
+import { Dispatch } from "redux";
 
 // crear nuevos productos
 // esta es la funcion que es llamada en el componente
 export const creatNuevoProductoAction = (producto: TProductos) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return async (dispatch: any) => {
+  
+  return async (dispatch: Dispatch) => {
     dispatch(agregarProducto());
 
     try {
@@ -59,8 +60,8 @@ const agregarProductoError = (error: boolean) => ({
 });
 
 export const obtenetProductosAction = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return async (dispatch: any) => {
+  
+  return async (dispatch: Dispatch) => {
     dispatch(obtenerProductos());
 
     try {
@@ -87,8 +88,8 @@ const listadoProductosError = (error: boolean) => ({
 });
 
 export const productoEliminarAction = (id: string) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return async (dispatch: any) => {
+  
+  return async (dispatch: Dispatch) => {
     dispatch(productoEliminar(id));
 
     try {
@@ -118,8 +119,8 @@ const eliminarProductoError = () => ({
 });
 
 export const obtenerProductoEditarAction = (producto: TProductos) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return (dispatch: any) => {
+  
+  return (dispatch: Dispatch) => {
     dispatch(obtenerProductoEditar(producto));
   }
 }
@@ -130,8 +131,8 @@ const obtenerProductoEditar = (producto: TProductos) => ({
 })
 
 export function editarProductoAction(producto:TProductos){
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return async(dispatch:any)=>{
+  
+  return async(dispatch:Dispatch)=>{
     dispatch(editarProducto());
 
     try {

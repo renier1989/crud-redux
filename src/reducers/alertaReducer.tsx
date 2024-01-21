@@ -1,3 +1,5 @@
+import { MOSTRAR_ALERTA, OCULTAR_ALERTA } from "../types";
+
 type AppState = {
     alerta: string | null
 }
@@ -13,6 +15,16 @@ export const initialAlertaState: AppState = {
 export default function alertaReducer(state: AppState = initialAlertaState, action: AppAction): AppState {
     switch (action.type) {
 
+        case MOSTRAR_ALERTA:
+            return{
+                ...state,
+                alerta : action.payload,
+            }
+        case OCULTAR_ALERTA:
+            return{
+                ...state,
+                alerta : null,
+            }
 
         default:
             return state;

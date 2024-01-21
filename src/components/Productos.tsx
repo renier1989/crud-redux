@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { obtenetProductosAction } from "../actions/productosActions";
 import { useEffect } from "react";
 import { Producto } from "./Producto";
+import { TProductos } from '../reducers/productosReducer';
 
 export const Productos = () => {
   const dispatch = useDispatch();

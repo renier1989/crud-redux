@@ -4,6 +4,7 @@ import { useState } from "react";
 import { TProductos } from "../reducers/productosReducer";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { TAlerta, mostrarAlertaAction, ocultarAlertaAction } from "../actions/alertaActions";
 
 export const NuevoProducto = () => {
   const [nombre, setNombre] = useState<string>("");
@@ -12,7 +13,7 @@ export const NuevoProducto = () => {
 
   const cargando = useSelector((state) => state.productos.loading);
   const error = useSelector((state) => state.productos.error);
-
+  const alerta = useSelector((state)=>state.alerta.alerta);
   const dispatch = useDispatch();
   const agregarProducto = (producto: TProductos) =>
     dispatch(creatNuevoProductoAction(producto));
@@ -24,8 +25,17 @@ export const NuevoProducto = () => {
     try {
       // validar el formulario
       if (nombre.trim() === "" || precio <= 0) {
-        return;
+        const alerta:TAlerta = {
+          msg: 'Todos los campos son requeridos'
+        }
+        dispatch(mostrarAlertaAction(alerta));
+        return ;
       }
+
+
+      // si no hay ningun error entonces oculto la alerta 
+      dispatch(ocultarAlertaAction());
+
       // crear el nuevo producto
       agregarProducto({
         nombre,
@@ -44,6 +54,7 @@ export const NuevoProducto = () => {
           Registrar Nuevo Producto
         </h2>
       </div>
+      {alerta && <p className="bg-red-600 rounded-md text-white text-center p-2 my-2 mx-10">{alerta.msg}</p>}
       <div className="w-full justify-center rounded-md border-2 shadow-md">
         <form
           onSubmit={submitCrearProducto}
