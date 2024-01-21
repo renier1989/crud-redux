@@ -1,39 +1,34 @@
 {
   "productos": [
     {
-      "id": "1",
-      "nombre": "Jugo de Zanahoria",
-      "precio": "1000"
+      "id": "811f",
+      "nombre": "elemento",
+      "precio": 222
     },
     {
-      "id": "bbf3",
-      "nombre": "a",
-      "precio": 3
-    },
-    {
-      "id": "10ac",
-      "nombre": "afd",
-      "precio": 3
-    },
-    {
-      "id": "07b1",
-      "nombre": "3333",
-      "precio": 44444
-    },
-    {
-      "id": "9680",
-      "nombre": "gfdadfsasdfa",
-      "precio": 3232323
-    },
-    {
-      "id": "ee80",
-      "nombre": "otra prueba mas",
+      "id": "8f59",
+      "nombre": "elemento 2",
       "precio": 333
     },
     {
-      "id": "a0a0",
-      "nombre": "xxxxxxxxx",
-      "precio": 31111
+      "id": "d37f",
+      "nombre": "elemento 3",
+      "precio": 333
+    },
+    {
+      "id": "c1c7",
+      "nombre": "elemento 4",
+      "precio": 444
+    },
+    {
+      "id": "4378",
+      "nombre": "elemento Editado",
+      "precio": 555
+    },
+    {
+      "id": "14b9",
+      "nombre": "elemento 5",
+      "precio": 55555555
     }
   ]
 }
