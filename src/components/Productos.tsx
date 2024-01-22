@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { obtenetProductosAction } from "../actions/productosActions";
 import { useEffect } from "react";
 import { Producto } from "./Producto";
-import { TProductos } from '../reducers/productosReducer';
 
 export const Productos = () => {
   const dispatch = useDispatch();
@@ -23,12 +22,13 @@ export const Productos = () => {
   return (
     <>
       <div className="text-center mb-4">
-        <h2 className="text-3xl text-sky-900 font-semibold py-3">
-          Listado de Producto
+        <h2 data-cy="titulo-lista" className="text-3xl text-sky-900 font-semibold py-3">
+          Listado de Productos
         </h2>
       </div>
       <div className="my-5 flex justify-center">
         <Link
+        data-cy="boton-nuevo-producto"
           className="p-3 rounded-md bg-sky-900 text-white font-semibold"
           to="/productos/nuevo"
         >
@@ -41,7 +41,7 @@ export const Productos = () => {
 
       </div>
       <div className="w-full justify-center rounded-md border-2 shadow-md">
-        <table className="table-auto w-[80%] mx-auto text-center  my-4">
+        <table data-cy="tabla-productos" className="table-auto w-[80%] mx-auto text-center  my-4">
           <thead className="border-b-2  ">
             <tr>
               <th>Nombre</th>
@@ -49,8 +49,8 @@ export const Productos = () => {
               <th>Acciones</th>
             </tr>
           </thead>
-          <tbody>
-          {productos.length === 0 ? <tr><td colSpan={3}>No se han registrado productos</td></tr>: (
+          <tbody data-cy="listado-productos">
+          {productos.length === 0 ? <tr><td data-cy="lista-vacia" colSpan={3}>No se han registrado productos</td></tr>: (
             productos.map(producto =>(
               <Producto
               key={producto.id}

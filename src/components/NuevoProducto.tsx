@@ -50,13 +50,14 @@ export const NuevoProducto = () => {
   return (
     <>
       <div className="text-center mb-4">
-        <h2 className="text-3xl text-sky-900 font-semibold py-3">
+        <h2 data-cy="titulo" className="text-3xl text-sky-900 font-semibold py-3">
           Registrar Nuevo Producto
         </h2>
       </div>
-      {alerta && <p className="bg-red-600 rounded-md text-white text-center p-2 my-2 mx-10">{alerta.msg}</p>}
+      {alerta && <p data-cy="alerta" className="bg-red-600 rounded-md text-white text-center p-2 my-2 mx-10">{alerta.msg}</p>}
       <div className="w-full justify-center rounded-md border-2 shadow-md">
         <form
+        data-cy="form-nuevo-producto"
           onSubmit={submitCrearProducto}
           className="py-5 px-10 flex flex-col gap-5"
         >
@@ -65,6 +66,7 @@ export const NuevoProducto = () => {
               Nombre del Producto
             </label>
             <input
+            data-cy="nombre-input"
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
               id="nombre"
@@ -79,6 +81,7 @@ export const NuevoProducto = () => {
               Precio del Producto
             </label>
             <input
+            data-cy="precio-input"
               value={precio}
               onChange={(e) => setPrecio(Number(e.target.value))}
               id="precio"
@@ -89,6 +92,7 @@ export const NuevoProducto = () => {
             />
           </div>
           <button
+          data-cy="boton-submit-nuevo"
             type="submit"
             className=" bg-sky-900 p-1 rounded-md text-white text-xl"
           >

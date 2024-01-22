@@ -1,34 +1,3 @@
 {
-  "productos": [
-    {
-      "id": "811f",
-      "nombre": "elemento",
-      "precio": 222
-    },
-    {
-      "id": "8f59",
-      "nombre": "elemento 2",
-      "precio": 333
-    },
-    {
-      "id": "d37f",
-      "nombre": "elemento 3",
-      "precio": 333
-    },
-    {
-      "id": "c1c7",
-      "nombre": "elemento 4",
-      "precio": 444
-    },
-    {
-      "id": "4378",
-      "nombre": "elemento Editado",
-      "precio": 555
-    },
-    {
-      "id": "14b9",
-      "nombre": "elemento 5",
-      "precio": 55555555
-    }
-  ]
+  "productos": []
 }

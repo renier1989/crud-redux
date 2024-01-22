@@ -35,13 +35,13 @@ export const Producto = ({ producto }: ProductoProp) => {
 
   return (
     <tr key={id} className="border-b  text-gray-700 font-semibold">
-      <td>{nombre}</td>
+      <td data-cy="info-nombre">{nombre}</td>
       <td>{precio}</td>
       <td>
         <div className="flex gap-5 items-center justify-center text-xl">
           {/* <Link to={`productos/editar/${id}`}>🔄</Link> */}
-          <button type="button" onClick={()=>redireccionarEditar(producto)}>🔄</button>
-          <button onClick={() => handleEliminarProducto(id)} >❌</button>
+          <button data-cy="boton-editar" type="button" onClick={()=>redireccionarEditar(producto)}>🔄</button>
+          <button data-cy="boton-eliminar" onClick={() => handleEliminarProducto(id)} >❌</button>
         </div>
       </td>
     </tr>
